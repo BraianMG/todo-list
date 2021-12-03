@@ -1,29 +1,60 @@
-## 1) Modelos (Usuarios y ToDo List)
-  - server:
-    - Será un objeto
+# ToDo List (Documentation)
 
-  - users:
-    - name
-    - email
-    - password
-    - state
-    - google
+- [ToDo List (Documentation)](#todo-list-documentation)
+  - [Backend](#backend)
+  - [Frontend](#frontend)
 
-  - tasks:
-    - description
-    - user
-    - state
-    - done
+## Backend
+- API
+  - Users:
+    - POST /api/v1/users/
+      ```javascript
+      {
+        "name": "example",
+        "email": "example@example.com",
+        "password": "example"
+      }
+      ```
 
-## 2) API
-  - JWT:
-    - post
+    - POST /api/v1/auth/login
+      ```javascript
+      {
+        "email": "example@example.com",
+        "password": "example"
+      }
 
-  - users:
-    - post
-    - get
+    - GET /api/v1/users
+    
+    - PUT /api/v1/users/<id>
+      ```javascript
+      {
+        "name": "example",
+        "email": "example@example.com",
+        "password": "example"
+      }
+      ```
 
-  - tasks:
-    - post
-    - get
-    - delete
+    - DELETE /api/v1/users/<id>
+  
+  - Tasks:
+    - POST /api/v1/tasks/
+      ```javascript
+      {
+        "description": "Task 1"
+      }
+      ```
+
+    - GET /api/v1/tasks
+    
+    - PUT /api/v1/tasks/<id>
+      ```javascript
+      {
+        "description": "Task 2",
+        "done": true
+      }
+      ```
+
+    - DELETE /api/v1/tasks/<id>
+
+## Frontend
+
