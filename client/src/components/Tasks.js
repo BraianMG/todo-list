@@ -1,11 +1,13 @@
 import { Fragment, useEffect, useState } from "react";
-import Navbar from "./Navbar";
 import axiosClient from "../config/axios";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const Tasks = () => {
+const Tasks = props => {
 
+    // const navigate = useNavigate()
+
+    const { user } = props;
     const [tasks, setTasks] = useState([]);
     const [consult, setConsult] = useState(true);
 
@@ -94,8 +96,7 @@ const Tasks = () => {
 
     return (
         <Fragment>
-            <Navbar logout={true} />
-            <h1>Tasks</h1>
+            <h1>{user.name}'s Tasks</h1>
 
             <div className="col-12 mb-5 d-flex justify-content-center">
                 <Link to={'/newtask'} className="btn btn-success text-uppercase py-2 px-5 font-weight-bold">create a new task</Link>

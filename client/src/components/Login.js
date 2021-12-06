@@ -1,16 +1,19 @@
 import { Fragment, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Navbar from "./Navbar";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import axiosClient from "../config/axios";
 import Alert from "./Alert";
+// import { handleSession } from "../helpers/session";
 
 const Login = props => {
 
     const navigate = useNavigate();
 
     const { user, setUser, setToken } = props;
-    const [alert, setAlert] = useState(false);
-    const [errors, setErrors] = useState();
+    const [alert, setAlert] = useState({
+        active: false,
+        msg: '',
+        danger: ''
+    });
 
     // Read form data
     const readForm = e => {
@@ -26,8 +29,11 @@ const Login = props => {
 
         // Validation
         if (!user.email || !user.password) {
-            setErrors('All fields are required');
-            setAlert(true);
+            setAlert({
+                active: true,
+                msg: 'All fields are required',
+                danger: true
+            });
             return;
         }
         
@@ -42,6 +48,9 @@ const Login = props => {
                 setToken(token);
                 axiosClient.defaults.headers.common["x-token"] = token;
 
+                // Save Token in LocalStorage
+                window.localStorage.setItem('loggedToDoAppUser', JSON.stringify(result.data));
+
                 // Redirect
                 navigate('/mytasks');
 
@@ -49,14 +58,18 @@ const Login = props => {
                 // console.log(err)
                 // console.log(err.response)
                 
-                setErrors('Invalid email or password');
-                setAlert(true);
+                setAlert({
+                    active: true,
+                    msg: 'Invalid email or password',
+                    danger: true
+                });
             });
     }
 
     return ( 
+        // user ? <Navigate to='/mytasks' />
+        // :
         <Fragment>
-            <Navbar logout={false} />
             <h1>Login</h1>
 
             <div className="col-xl-4 col-md-6 col-sm-10 mx-auto px-3">
@@ -90,7 +103,7 @@ const Login = props => {
 
                     <input type="submit" className="btn btn-primary mt-3 w-100 p-3 text-uppercase font-weight-bold" value="Login" />
 
-                    {alert ? <Alert danger={true} errors={errors} /> : ''}
+                    {alert.active ? <Alert alert={alert} /> : ''}
                 </form>
 
                 <div className="container mt-5 py-5">

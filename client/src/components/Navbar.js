@@ -1,10 +1,21 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../logo.jpg'
 
 const Navbar = props => {
 
-    const { logout } = props;
+    const { user, setUser, token, setToken } = props;
+    const navigate = useNavigate();
+
+    const loguot = () => {
+
+        window.localStorage.removeItem('loggedToDoAppUser');
+        setUser(null);
+        setToken('');
+
+        // Redirect
+        navigate('/');
+    }
 
     return (
         <Fragment>
@@ -18,7 +29,7 @@ const Navbar = props => {
                             </Link>
                         </div>
                         <div className="col-sm-10 d-flex justify-content-end">
-                            { logout ? <Link to='/' className="btn btn-danger text-uppercase px-5">Log out</Link> : '' }
+                            { user && token ? <button onClick={loguot} className="btn btn-danger text-uppercase px-5">Log out</button> : '' }
                         </div>
                     </div>
                 </div>
