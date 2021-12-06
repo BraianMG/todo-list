@@ -11,6 +11,7 @@
   - Install dependencies for __client__ and __server__ whit __npm install__
   - Start the __server__ with __npm run dev__
   - Start the __client__ with __npm run start__
+  - Don't forget to __configure your .env files__ from the __.env.example templates__ for both the __client__ and the __server__
 ## __Backend__
 - __API__
   - __Users__:
