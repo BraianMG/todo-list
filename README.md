@@ -4,6 +4,7 @@
   - [__Test it__](#test-it)
   - [__Backend__](#backend)
   - [__Frontend__](#frontend)
+  - [__Comments__](#comments)
 
 ## __Test it__
 - Run each command in their respective directories:
@@ -94,3 +95,7 @@
 - Tasks: __"/mytasks"__
 - New Task: __"/newtask__
 - Other: __"/*"__ (page __Not Found__)
+
+## __Comments__
+I reached a result with which I am not entirely satisfied, with a little more time I could make some improvements and add tests for both the frontend and the backend, even deploy it in, for example, Heroku
+The truth is that I really liked this challenge, it made me discover some specific points to improve, so I will not hesitate to strengthen those areas, I plan to continue with this project and improve it day by day.
