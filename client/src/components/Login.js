@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import { Link, useNavigate, Navigate } from "react-router-dom";
 import axiosClient from "../config/axios";
 import Alert from "./Alert";
-// import { handleSession } from "../helpers/session";
+import handleSession from "../helpers/session";
 
 const Login = props => {
 
@@ -14,6 +14,8 @@ const Login = props => {
         msg: '',
         danger: ''
     });
+
+    const { auth } = handleSession();
 
     // Read form data
     const readForm = e => {
@@ -34,13 +36,20 @@ const Login = props => {
                 msg: 'All fields are required',
                 danger: true
             });
+
+            setTimeout(() => {
+                setAlert({
+                    active: false,
+                    msg: '',
+                    danger: ''
+                });
+            }, 5000);
             return;
         }
         
         // Petition with Axios
         axiosClient.post('/auth/login', user)
             .then(result => {
-                // console.log(result.data);
 
                 // Update state
                 const { token, user } = result.data;
@@ -55,20 +64,26 @@ const Login = props => {
                 navigate('/mytasks');
 
             }).catch((err) => {
-                // console.log(err)
-                // console.log(err.response)
-                
+
                 setAlert({
                     active: true,
                     msg: 'Invalid email or password',
                     danger: true
                 });
+
+                setTimeout(() => {
+                    setAlert({
+                        active: false,
+                        msg: '',
+                        danger: ''
+                    });
+                }, 5000);
             });
     }
 
     return ( 
-        // user ? <Navigate to='/mytasks' />
-        // :
+        auth ? <Navigate to='/mytasks' />
+        :
         <Fragment>
             <h1>Login</h1>
 

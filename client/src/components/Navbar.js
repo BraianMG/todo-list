@@ -1,16 +1,23 @@
 import React, { Fragment } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../logo.jpg'
+import logo from '../logo.jpg';
+import handleSession from "../helpers/session";
 
 const Navbar = props => {
 
-    const { user, setUser, token, setToken } = props;
+    const { setUser, setToken } = props;
     const navigate = useNavigate();
+
+    const { auth } = handleSession();
 
     const loguot = () => {
 
         window.localStorage.removeItem('loggedToDoAppUser');
-        setUser(null);
+        setUser({
+            name: '',
+            email: '',
+            password: ''
+        });
         setToken('');
 
         // Redirect
@@ -29,7 +36,8 @@ const Navbar = props => {
                             </Link>
                         </div>
                         <div className="col-sm-10 d-flex justify-content-end">
-                            { user && token ? <button onClick={loguot} className="btn btn-danger text-uppercase px-5">Log out</button> : '' }
+                            {/* { user && token ? <button onClick={loguot} className="btn btn-danger text-uppercase px-5">Log out</button> : '' } */}
+                            { auth ? <button onClick={loguot} className="btn btn-danger text-uppercase px-5">Log out</button> : '' }
                         </div>
                     </div>
                 </div>

@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Alert from "./Alert";
 import axiosClient from "../config/axios";
+import handleSession from "../helpers/session";
 
-const NewTask = props => {
+const NewTask = () => {
 
     const navigate = useNavigate();
 
-    // const { user } = props;
     const [alert, setAlert] = useState({
         active: false,
         msg: '',
@@ -17,6 +17,8 @@ const NewTask = props => {
     const [task, setTask] = useState({
         description: ''
     });
+
+    const { auth } = handleSession();
 
     // Read form data
     const readForm = e => {
@@ -39,25 +41,33 @@ const NewTask = props => {
                 msg: 'The Description is required',
                 danger: true
             });
+
+            setTimeout(() => {
+                setAlert({
+                    active: false,
+                    msg: '',
+                    danger: ''
+                });
+            }, 5000);
             return;
         }
         
         // Petition with Axios
         axiosClient.post('/tasks', task)
             .then(response => {
-                // // Update state
-                // const { token, user } = response.data;
-                // setUser(user);
-                // setToken(token);
-
                 setAlert({
                     active: true,
                     msg: 'Task added successfully',
                     danger: false
                 });
 
-                // // Redirect
-                // navigate('/newtask');
+                setTimeout(() => {
+                    setAlert({
+                        active: false,
+                        msg: '',
+                        danger: ''
+                    });
+                }, 5000);
 
             }).catch((err) => {
                 console.log(err);
@@ -65,16 +75,25 @@ const NewTask = props => {
 
                 navigate('/');
                 
-                // setErrors('The Email is already registered in the database');
                 setAlert({
                     active: true,
                     msg: 'Task could not be added, please try again',
                     danger: true
                 });
+
+                setTimeout(() => {
+                    setAlert({
+                        active: false,
+                        msg: '',
+                        danger: ''
+                    });
+                }, 5000);
             });
     }
 
     return (
+        !auth ? <Navigate to='/' />
+        :
         <Fragment>
             <h1>NewTask</h1>
 

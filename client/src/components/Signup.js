@@ -33,6 +33,14 @@ const Signup = props => {
                 msg: 'All fields are required',
                 danger: true
             });
+
+            setTimeout(() => {
+                setAlert({
+                    active: false,
+                    msg: '',
+                    danger: ''
+                });
+            }, 5000);
             return;
         }
 
@@ -42,6 +50,14 @@ const Signup = props => {
                 msg: 'The password must be more than 8 digits',
                 danger: true
             });
+
+            setTimeout(() => {
+                setAlert({
+                    active: false,
+                    msg: '',
+                    danger: ''
+                });
+            }, 5000);
             return;
         }
 
@@ -51,6 +67,14 @@ const Signup = props => {
                 msg: 'Passwords are different',
                 danger: true
             });
+
+            setTimeout(() => {
+                setAlert({
+                    active: false,
+                    msg: '',
+                    danger: ''
+                });
+            }, 5000);
             return;
         }
         
@@ -72,8 +96,6 @@ const Signup = props => {
                 navigate('/');
 
             }).catch((err) => {
-                console.log(err)
-                console.log(err.response.data)
                                 
                 setAlert({
                     active: true,

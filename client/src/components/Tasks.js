@@ -1,13 +1,11 @@
 import { Fragment, useEffect, useState } from "react";
 import axiosClient from "../config/axios";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import handleSession from "../helpers/session";
 
-const Tasks = props => {
+const Tasks = () => {
 
-    // const navigate = useNavigate()
-
-    const { user } = props;
     const [tasks, setTasks] = useState([]);
     const [consult, setConsult] = useState(true);
 
@@ -23,20 +21,20 @@ const Tasks = props => {
                         // Update state
                         const { tasks } = response.data;
                         setTasks(tasks);
-                        // console.log(tasks)
 
                         // Disable consult
                         setConsult(false);
 
                     }).catch((err) => {
-                        // console.log(err);
-                        // console.log(err.response);
+                        console.log(err);
                     });
             }
 
             getTasks();
         }
     });
+
+    const { auth, userLS } = handleSession();
 
     const taskUpdate = ( e, {id, description} ) => {
         const task = { 
@@ -47,14 +45,12 @@ const Tasks = props => {
         // Petition with Axios
         axiosClient.put(`/tasks/${id}`, task)
             .then(response => {
-                // console.log(response)
-
                 // Enable consult to refresh list
                 setConsult(true);
 
             }).catch((err) => {
-                // console.log(err);
-                // console.log(err.response);
+                console.log(err);
+                console.log(err.response);
             });
     }
 
@@ -81,8 +77,6 @@ const Tasks = props => {
                 // Petition with Axios
                 axiosClient.delete(`/tasks/${id}`)
                     .then(response => {
-                        // console.log(response);
-
                         // Enable consult to refresh list
                         setConsult(true);
 
@@ -95,8 +89,10 @@ const Tasks = props => {
     }
 
     return (
+        !auth ? <Navigate to='/' />
+        :
         <Fragment>
-            <h1>{user.name}'s Tasks</h1>
+            <h1>{userLS.name}'s Tasks</h1>
 
             <div className="col-12 mb-5 d-flex justify-content-center">
                 <Link to={'/newtask'} className="btn btn-success text-uppercase py-2 px-5 font-weight-bold">create a new task</Link>

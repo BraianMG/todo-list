@@ -20,7 +20,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar user={user} setUser={setUser} token={token} setToken={setToken} />
+      <Navbar setUser={setUser} setToken={setToken} />
       <Routes>
 
         <Route 
@@ -37,7 +37,7 @@ function App() {
           path="/mytasks"
           element={
             <PrivateRoute>
-              <Tasks user={user} setUser={setUser} token={token} setToken={setToken} />
+              <Tasks />
             </PrivateRoute>
           }
           user={user}
@@ -48,7 +48,7 @@ function App() {
           path="/newtask"
           element={
             <PrivateRoute>
-              <NewTask user={user} setUser={setUser} token={token} setToken={setToken} />
+              <NewTask />
             </PrivateRoute>
           }
           user={user}
