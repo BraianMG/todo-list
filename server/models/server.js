@@ -6,7 +6,7 @@ class Server {
 
     constructor() {
         this.app = express();
-        this.port = process.env.PORT
+        this.port = process.env.PORT || 8080;
         this.authPath = "/api/v1/auth";
         this.usersPath = "/api/v1/users";
         this.tasksPath = "/api/v1/tasks";
