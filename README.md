@@ -1,10 +1,10 @@
 # __ToDo List__ (Documentation)
 
 I decided to manage both the client and the server in different repositories to facilitate the deployments in HEROKU, the respective repositories are:
-- [__Frontend__](https://github.com/BraianMG/todo-list-frontend)
-- [__Backend__](https://github.com/BraianMG/todo-list-backend)
+- __Frontend__: [https://github.com/BraianMG/todo-list-frontend](https://github.com/BraianMG/todo-list-frontend)
+- __Backend__: [https://github.com/BraianMG/todo-list-backend](https://github.com/BraianMG/todo-list-backend)
 
-You can use and test the deployment at [https://braianmg-todo-list.herokuapp.com/](https://braianmg-todo-list.herokuapp.com/)
+You can use and test the deployment at __[https://braianmg-todo-list.herokuapp.com/](https://braianmg-todo-list.herokuapp.com/)__
 
 ---
 ## __Comments__
