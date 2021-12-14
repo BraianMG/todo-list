@@ -4,7 +4,7 @@ I decided to manage both the client and the server in different repositories to 
 - __Frontend__: [https://github.com/BraianMG/todo-list-frontend](https://github.com/BraianMG/todo-list-frontend)
 - __Backend__: [https://github.com/BraianMG/todo-list-backend](https://github.com/BraianMG/todo-list-backend)
 
-You can use and test the deployment at __[https://braianmg-todo-list.herokuapp.com/](https://braianmg-todo-list.herokuapp.com/)__
+__You can use and test the deployment at__ [https://braianmg-todo-list.herokuapp.com/](https://braianmg-todo-list.herokuapp.com/)
 
 ---
 ## __Comments__
