@@ -3,7 +3,7 @@ const { usersGet, usersPost, usersPut, usersDelete } = require('../controllers/u
 const { check } = require('express-validator');
 const { validateFields } = require('../helpers/validate-fields');
 const { emailExist } = require('../middlewares/email-exist');
-const { validateJWT } = require('../middlewares/validate-JWT');
+const { validateJWT } = require('../middlewares/validate-jwt');
 const { isAdminRole } = require('../middlewares/validate-roles');
 
 const router = Router();

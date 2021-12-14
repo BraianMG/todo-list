@@ -6,6 +6,7 @@ class Server {
 
     constructor() {
         this.app = express();
+        this.host = process.env.HOST || '0.0.0.0';
         this.port = process.env.PORT || 8080;
         this.authPath = "/api/v1/auth";
         this.usersPath = "/api/v1/users";
@@ -41,9 +42,9 @@ class Server {
     async connectDB() {
         await dbConnection();
     }
-
+ 
     listen() {
-        this.app.listen( this.port, () => {
+        this.app.listen( this.port, this.host, () => {
             console.log(`Server listening through port ${this.port}`)
         })
     }
