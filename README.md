@@ -6,7 +6,6 @@ I decided to manage both the client and the server in different repositories to 
 
 __You can use and test the deployment at__ [https://braianmg-todo-list.herokuapp.com/](https://braianmg-todo-list.herokuapp.com/)
 
-
 ## __Comments__
 With the extra time they gave me I managed to solve problems with the persistence of the session on the client side, it was something that bothered me a lot since it did not allow the app to be functional or at least from my point of view.
 
